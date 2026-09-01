@@ -16,16 +16,20 @@ const CompareCurrency = ({ currency, rate, label }) => {
   }
 
   return (
-    <div className="bg-neutral-600 border border-neutral-500 p-3 flex gap-2.5 ">
+    <div className="  bg-neutral-600 border border-neutral-500 py-3 px-4 rounded-[0.625rem] flex items-center gap-5 ">
       {/* Details */}
       <div className="w-full">
         <div className="flex justify-between">
-          <p className="text-[0.875rem text-neutral-50">{currency}</p>
-          <p className="text-[1rem] text-neutral-50 ">{debouncedFinalValue}</p>
+          <p className="text-[0.875rem] tracking-3 text-neutral-50">
+            {currency}
+          </p>
+          <p className="text-[1rem] tracking-3 text-neutral-50 ">
+            {debouncedFinalValue}
+          </p>
         </div>
         <div className="flex justify-between">
-          <p className="text-[0.75rem] text-neutral-200">{label}</p>
-          <p className=" text-[0.625rem] text-neutral-200">{rate}</p>
+          <p className="text-[0.75rem] tracking-2 text-neutral-200">{label}</p>
+          <p className=" text-[0.625rem] text-neutral-200">@ {rate}</p>
         </div>
       </div>
       {/* Favourites Button */}

@@ -10,29 +10,31 @@ import {
 } from "../../../../../utils/GraphConfig";
 import { handleGraphData } from "../../../../../Services/GraphDataService";
 import { useHistoryStore } from "../../../../../stores/HistoryStore";
-import { getGraphTimeLabels } from "@/utils/DateAndTime";
+import { getGraphTimeLabels, getTodayDateInWords } from "@/utils/DateAndTime";
 import { useState } from "react";
 import Graph from "./Graph";
 
 const GraphContainer = () => {
-  const { sendCurrency, receiveCurrency } = useValueStore();
+  const { sendCurrency, receiveCurrency, currRate } = useValueStore();
   const { timelineValue, hoverPriceValue, fixedToolTip, toggleFixedToolTip } =
     useHistoryStore();
+
+  const todayDate = getTodayDateInWords();
 
   // useEffect(() => {
   //   console.log("data for chart- ", graphData);
   // });
 
   return (
-    <div className=" bg-neutral-700 p-5 flex flex-col gap-5">
+    <div className=" bg-neutral-700 p-5 flex flex-col gap-5 rounded-[1rem]">
       <div className="flex justify-between items-center">
-        <p className="text-neutral-50 text-[1rem]">
+        <p className="text-neutral-50 text-[1rem] font-medium tracking-3">
           {sendCurrency}/{receiveCurrency}
         </p>
         <div className="text-neutral-200 text-[0.75rem] flex items-center ">
-          <p>0.8530</p>
+          <p>{currRate}</p>
           <DotIcon />
-          <p>MAY 14 16:00 IST</p>
+          <p>{todayDate}</p>
         </div>
       </div>
       {/* Fixed Tool tip feature, made but tooltip placement is not looking good */}

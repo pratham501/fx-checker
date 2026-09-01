@@ -16,4 +16,5 @@ export const useValueStore = create((set) => ({
   },
   currRate: null,
   currenciesOptions: null,
+  selectOptions: null,
 }));

@@ -9,7 +9,7 @@ const Details = () => {
   const { detailsPage } = useDetailsStore();
 
   return (
-    <div className="flex flex-col gap-4 transition-all ease-in-out duration-1000">
+    <div className="flex flex-col transition-all ease-in-out duration-1000">
       <DetailsHeader />
       {detailsPage == "compare" ? (
         <Compare />

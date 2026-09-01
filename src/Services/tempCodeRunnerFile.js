@@ -1,0 +1,1 @@
+from=${yesterdayDate}&quotes=INR,USD,JPY,GBP,CNY

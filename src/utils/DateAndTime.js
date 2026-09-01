@@ -6,10 +6,18 @@ export const getYesterdayDate = () => {
   return yesterdayDate;
 };
 
+export function getTodayDateInWords() {
+  const date = new moment().format("MMM D YYYY");
+  return date;
+}
+
+export function getTodayDate() {
+  const date = new moment().format("D-MM-YYYY");
+  return date;
+}
+
 export function getOneMonthDate() {
   const oneMonthDate = new moment().subtract(1, "months").format("YYYY-MM-D");
-
-  console.log("1m date-", oneMonthDate);
 
   return oneMonthDate;
 }
@@ -23,15 +31,11 @@ export function getThreeMonthDate() {
 export function getOneYearDate() {
   const oneYearDate = new moment().subtract(1, "years").format("YYYY-MM-D");
 
-  console.log("sub 1 yr- ", oneYearDate);
-
   return oneYearDate;
 }
 
 export function getOneMonth() {
   const oneMonthDate = new moment().subtract(1, "months");
-
-  console.log("1m date-", oneMonthDate);
 
   return oneMonthDate;
 }
@@ -44,8 +48,6 @@ export function getThreeMonth() {
 
 export function getOneYear() {
   const oneYearDate = new moment().subtract(1, "years");
-
-  console.log("sub 1 yr- ", oneYearDate);
 
   return oneYearDate;
 }

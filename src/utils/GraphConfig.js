@@ -56,7 +56,7 @@ export function getGraphOptions() {
         hoverRadius: 5,
       },
       line: {
-        borderWidth: 2.3,
+        borderWidth: 2,
       },
     },
   };
@@ -117,8 +117,8 @@ export async function getGraphDetails() {
 
   const data = await getGraphData();
 
-  console.log("labels- ", labels);
-  console.log("data- ", data);
+  // console.log("labels- ", labels);
+  // console.log("data- ", data);
 
   const chartData = {
     labels: labels,

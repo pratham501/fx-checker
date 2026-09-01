@@ -22,12 +22,15 @@ const FavouritesButton = ({ pair }) => {
     <div
       onClick={handleFavClick}
       className={` ${
-        favState == true ? " border-comp" : "border-neutral-500"
+        favState == true
+          ? " border-comp"
+          : "border-neutral-500 hover:border hover:border-neutral-400"
       } hover:bg-neutral-500 p-2 border h-8  rounded-[0.5rem] flex items-center aspect-square cursor-pointer`}
     >
       <StarIcon
-        fill={favState == true ? "#cef739" : "#525252"}
-        color={favState == true ? "#cef739" : "#fafafa"}
+        fill={favState == true ? "#cef739" : "#FFFFFF00"}
+        color={favState == true ? "#cef739" : "#ffffff"}
+        strokeWidth={1}
         className="size-3.5"
       />
     </div>

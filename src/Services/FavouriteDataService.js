@@ -9,7 +9,6 @@ export async function getFavData(send, receive) {
     const res = await httpClient.get(
       `?base=${send}&from=${yesterdayDate}&quotes=${receive}`
     );
-    console.log("fav data- ", res.data);
     return res.data;
   } catch (e) {
     console.error("error in getting favourite data- ", e);

@@ -1,3 +1,4 @@
+import { getItemData, setItemData } from "@/utils/StoringData";
 import { httpClient } from "../config/AxiosHelper";
 import { useDataStore } from "../stores/DataStore";
 import { getYesterdayDate } from "../utils/DateAndTime";
@@ -5,15 +6,11 @@ import { getYesterdayDate } from "../utils/DateAndTime";
 const yesterdayDate = getYesterdayDate();
 
 export const getLiveMarketData = async () => {
-  const saved = localStorage.getItem("liveMarketData");
-  let savedData;
-  if (saved) {
-    savedData = JSON.parse(saved);
+  const savedData = getItemData("liveMarketData");
 
-    if (savedData && Object.keys(savedData).length != 0) {
-      useDataStore.setState({ liveMarketData: savedData });
-      return;
-    }
+  if (savedData) {
+    useDataStore.setState({ liveMarketData: savedData });
+    return;
   }
 
   try {
@@ -23,7 +20,7 @@ export const getLiveMarketData = async () => {
 
     console.log("got live market data");
 
-    localStorage.setItem("liveMarketData", JSON.stringify(res.data));
+    setItemData("liveMarketData", res.data);
 
     useDataStore.setState({ liveMarketData: res.data });
   } catch (e) {

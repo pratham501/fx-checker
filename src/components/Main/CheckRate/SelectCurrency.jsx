@@ -13,10 +13,13 @@ import {
 } from "@/components/ui/select";
 
 const SelectCurrency = ({ type }) => {
-  const { sendCurrency, receiveCurrency, setSendCurrency, setReceiveCurrency } =
-    useValueStore();
-
-  const [options, setOptions] = useState(null);
+  const {
+    sendCurrency,
+    receiveCurrency,
+    setSendCurrency,
+    setReceiveCurrency,
+    selectOptions,
+  } = useValueStore();
 
   const handleChange = (val) => {
     // console.log(val);
@@ -32,15 +35,15 @@ const SelectCurrency = ({ type }) => {
     }
   };
 
-  useEffect(() => {
-    async function getOptions() {
-      const options = await getSelectOptions();
-      setOptions(options);
-      // console.log(options);
-    }
+  // useEffect(() => {
+  //   async function getOptions() {
+  //     const options = await getSelectOptions();
+  //     setOptions(options);
+  //     // console.log(options);
+  //   }
 
-    getOptions();
-  }, []);
+  //   getOptions();
+  // }, []);
 
   return (
     <Select
@@ -50,18 +53,20 @@ const SelectCurrency = ({ type }) => {
     >
       <SelectTrigger
         className={
-          "cursor-pointer p-2.5 text-[0.875rem] border border-neutral-400 "
+          "cursor-pointer bg-neutral-500 border border-neutral-400 hover:bg-neutral-400 "
         }
       >
-        <SelectValue />
+        <SelectValue className={"text-neutral-50 text-[0.875rem] tracking-3"} />
       </SelectTrigger>
       <SelectContent
         alignItemWithTrigger={false}
         align="end"
-        className={"bg-neutral-600 w-[20rem] font-mono"}
+        className={
+          "bg-neutral-600 w-[20rem] font-mono border border-neutral-400"
+        }
       >
         <SelectGroup>
-          {options?.map((item) => (
+          {selectOptions?.map((item) => (
             <SelectItem
               key={item.value}
               value={item.value}

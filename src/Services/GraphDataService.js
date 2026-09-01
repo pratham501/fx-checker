@@ -9,6 +9,7 @@ import { useDataStore } from "../stores/DataStore";
 import { useHistoryStore } from "@/stores/HistoryStore";
 import { useLoadingStore } from "@/stores/LoadingStore";
 import { calculatePercentage } from "@/utils/LiveRates";
+import { getItemData, setItemData } from "@/utils/StoringData";
 
 const oneMonthDate = getOneMonthDate();
 const threeMonthDate = getThreeMonthDate();
@@ -37,13 +38,12 @@ export const handleGraphData = async () => {
         useDataStore.setState({ oneYearData: data });
         break;
     }
-    console.log("data outside switch- ", data);
 
     const l = data.length;
     const currRate = data[l - 1]?.rate;
     const lastRate = data[0]?.rate;
     useHistoryStore.setState({
-      change: (currRate - lastRate).toFixed(4),
+      change: currRate - lastRate,
     });
     useHistoryStore.setState({
       percentageChange: calculatePercentage(currRate, lastRate),
@@ -54,18 +54,14 @@ export const handleGraphData = async () => {
 };
 
 const getOneMonthData = async () => {
-  const saved = localStorage.getItem(
+  const savedData = getItemData(
     `${useValueStore.getState().sendCurrency}/${
       useValueStore.getState().receiveCurrency
     }`
   );
-  let savedData;
-  if (saved) {
-    savedData = JSON.parse(saved);
 
-    if (savedData?.oneMonth) {
-      return savedData.oneMonth;
-    }
+  if (savedData?.oneMonth) {
+    return savedData.oneMonth;
   }
 
   try {
@@ -74,24 +70,24 @@ const getOneMonthData = async () => {
         useValueStore.getState().sendCurrency
       }&from=${oneMonthDate}&quotes=${useValueStore.getState().receiveCurrency}`
     );
-    console.log("got data from api");
+
 
     if (savedData) {
       savedData["oneMonth"] = res.data;
-      localStorage.setItem(
+      setItemData(
         `${useValueStore.getState().sendCurrency}/${
           useValueStore.getState().receiveCurrency
         }`,
-        JSON.stringify(savedData)
+        savedData
       );
     } else {
       const pairData = {};
       pairData["oneMonth"] = res.data;
-      localStorage.setItem(
+      setItemData(
         `${useValueStore.getState().sendCurrency}/${
           useValueStore.getState().receiveCurrency
         }`,
-        JSON.stringify(pairData)
+        pairData
       );
     }
 
@@ -103,18 +99,14 @@ const getOneMonthData = async () => {
 };
 
 const getThreeMonthData = async () => {
-  const saved = localStorage.getItem(
+  const savedData = getItemData(
     `${useValueStore.getState().sendCurrency}/${
       useValueStore.getState().receiveCurrency
     }`
   );
-  let savedData;
-  if (saved) {
-    savedData = JSON.parse(saved);
 
-    if (savedData?.threeMonth) {
-      return savedData.threeMonth;
-    }
+  if (savedData?.threeMonth) {
+    return savedData.threeMonth;
   }
 
   try {
@@ -125,28 +117,25 @@ const getThreeMonthData = async () => {
         useValueStore.getState().receiveCurrency
       }`
     );
-    console.log("got data from api");
 
     if (savedData) {
       savedData["threeMonth"] = res.data;
-      localStorage.setItem(
+      setItemData(
         `${useValueStore.getState().sendCurrency}/${
           useValueStore.getState().receiveCurrency
         }`,
-        JSON.stringify(savedData)
+        savedData
       );
     } else {
       const pairData = {};
       pairData["threeMonth"] = res.data;
-      localStorage.setItem(
+      setItemData(
         `${useValueStore.getState().sendCurrency}/${
           useValueStore.getState().receiveCurrency
         }`,
-        JSON.stringify(pairData)
+        pairData
       );
     }
-
-    console.log("this is res.data in 3m func- ", res.data);
 
     return res.data;
   } catch (e) {
@@ -156,18 +145,13 @@ const getThreeMonthData = async () => {
 };
 
 const getOneYearData = async () => {
-  const saved = localStorage.getItem(
+  const savedData = getItemData(
     `${useValueStore.getState().sendCurrency}/${
       useValueStore.getState().receiveCurrency
     }`
   );
-  let savedData;
-  if (saved) {
-    savedData = JSON.parse(saved);
-
-    if (savedData?.oneYear) {
-      return savedData.oneYear;
-    }
+  if (savedData?.oneYear) {
+    return savedData.oneYear;
   }
 
   try {
@@ -176,24 +160,23 @@ const getOneYearData = async () => {
         useValueStore.getState().sendCurrency
       }&from=${oneYearDate}&quotes=${useValueStore.getState().receiveCurrency}`
     );
-    console.log("got data from api");
 
     if (savedData) {
       savedData["oneYear"] = res.data;
-      localStorage.setItem(
+      setItemData(
         `${useValueStore.getState().sendCurrency}/${
           useValueStore.getState().receiveCurrency
         }`,
-        JSON.stringify(savedData)
+        savedData
       );
     } else {
       const pairData = {};
       pairData["oneYear"] = res.data;
-      localStorage.setItem(
+      setItemData(
         `${useValueStore.getState().sendCurrency}/${
           useValueStore.getState().receiveCurrency
         }`,
-        JSON.stringify(pairData)
+        pairData
       );
     }
 

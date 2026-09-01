@@ -68,8 +68,10 @@ const RateContainer = ({ type }) => {
   };
 
   return (
-    <div className="w-full border border-neutral-500 bg-neutral-600 p-4 rounded-[16px] flex flex-col ">
-      <p className="uppercase">{type}</p>
+    <div className="w-full border border-neutral-500 bg-neutral-600 p-4 rounded-[1rem] flex flex-col ">
+      <p className="uppercase text-[0.875rem] text-neutral-100 tracking-3">
+        {type}
+      </p>
       <div className="flex items-center justify-between gap-4 mt-5 w-full">
         <div className="w-full">
           {type == "send" ? (
@@ -82,10 +84,10 @@ const RateContainer = ({ type }) => {
               onDrop={(e) => e.preventDefault()}
               onChange={handleInputChange}
               onKeyDown={handleKeyPress}
-              className="border-b border-neutral-200 outline-0 text-[2rem] w-[65%] "
+              className="border-b border-neutral-200 text-neutral-50 outline-0 text-[2rem] lg:text-[2.5rem] tracking-1 w-[65%] font-bold "
             />
           ) : (
-            <p className="border-b border-neutral-200 text-comp w-[65%] no-scrollbar overflow-scroll text-[2rem] ">
+            <p className="border-b border-neutral-200 text-comp w-[65%] no-scrollbar overflow-scroll text-[2rem] lg:text-[2.5rem] font-bold tracking-1">
               {debouncedCalculatedValue}
             </p>
           )}

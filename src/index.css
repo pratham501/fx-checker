@@ -13,6 +13,17 @@
   --tracking-1: -0.03125em;
   --tracking-2: 0.03125em;
   --tracking-3: 0.0625em;
+  --color-neutral-50: #ffffff;
+  --color-neutral-100: #c6c6c6;
+  --color-neutral-200: #9d9d9d;
+  --color-neutral-300: #454547;
+  --color-neutral-400: #3d3d3d;
+  --color-neutral-500: #2e2e2e;
+  --color-neutral-600: #202022;
+  --color-neutral-700: #171719;
+  --color-neutral-900: #0a0a0a;
+  --color-loss: #ff4141;
+  --color-profit: #42eb05;
 }
 
 /* * {
@@ -45,6 +56,14 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+select {
+  outline: none;
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
@@ -58,7 +77,7 @@ input[type="number"] {
 }
 
 .enable-marquee {
-  /* animation: scroll 30s linear infinite; */
+  animation: scroll 30s linear infinite;
 }
 
 @theme inline {
