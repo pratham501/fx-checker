@@ -18,8 +18,6 @@ export const getLiveMarketData = async () => {
       `?from=${yesterdayDate}&quotes=INR,USD,JPY,GBP,CNY`
     );
 
-    console.log("got live market data");
-
     setItemData("liveMarketData", res.data);
 
     useDataStore.setState({ liveMarketData: res.data });
